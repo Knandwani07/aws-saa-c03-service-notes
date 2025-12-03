@@ -5,7 +5,7 @@ It provides high performance, scalability, and cost efficiency for modern analyt
 
 ---
 
-## What It Is
+## Key Features
 
 • Columnar storage optimized for analytical queries  
 • Massively Parallel Processing (MPP) for high performance  
