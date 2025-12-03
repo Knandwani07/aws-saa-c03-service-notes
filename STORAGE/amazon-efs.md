@@ -3,151 +3,153 @@
 ---
 
 ## What It Is
-Amazon Elastic File System (EFS) is a fully managed, scalable, elastic NFS file system for AWS and on-premises environments. It provides shared, concurrent access to thousands of EC2 instances with automatic scaling and high durability.
+Amazon Elastic File System (EFS) is a fully managed, scalable, elastic NFS file system for use with AWS services and on-premises resources.  
+Provides shared, concurrent access to thousands of EC2 instances.
 
 ---
 
 ## Key Characteristics
-Managed NFS file system (NFSv4.1, NFSv4.0).  
-Elastic — automatically expands and shrinks based on file storage.  
-Scalable to petabytes with high throughput and IOPS.  
-Accessible concurrently from multiple AZs.  
-Supports POSIX permissions for file-level access control.
+• Managed Network File System (NFSv4.1, NFSv4.0)  
+• Elastic: Automatically grows and shrinks as files are added or removed  
+• Scalable: Supports petabytes of data, high levels of throughput and IOPS  
+• Accessible concurrently by multiple instances across AZs  
+• Supports POSIX permissions for access control  
 
 ---
 
 ## Storage Classes
 
-### Standard
-For frequently accessed files.  
-Higher cost.  
-Low latency and high throughput.
+### 1. Standard
+o For frequently accessed files  
+o Higher cost  
+o Designed for low latency, high throughput  
 
-### Infrequent Access (IA)
-Lower cost for less frequently accessed files.  
-Charged per GB stored + per access request.  
-Good for content that must remain available but is rarely accessed.
+### 2. Infrequent Access (IA)
+o Lower cost for infrequently accessed files  
+o Charged per GB stored and per access request  
+o Ideal for files not read often but must be available  
 
-### Lifecycle Management
-Automatically transitions files to IA based on age.  
-Policies such as “no access for 30 days.”
+### 3. Lifecycle Management
+o Automatically moves files to IA based on age  
+o Configurable transition policy (e.g., 30 days of no access)  
 
 ---
 
 ## Performance Modes
 
-### General Purpose
-Default mode.  
-Low latency for transactional workloads.  
-Ideal for web servers, CMS, home directories.
+### 1. General Purpose
+o Default mode  
+o Low latency for latency-sensitive use cases  
+o Suitable for web servers, CMS, home directories  
 
-### Max I/O
-Higher aggregate throughput.  
-Higher latency.  
-Best for massive parallel workloads: analytics, media processing, big data.
+### 2. Max I/O
+o Supports higher levels of aggregate throughput  
+o Higher latencies  
+o Best for big data, media processing, analytics workloads  
 
 ---
 
 ## Throughput Modes
 
-### Bursting Throughput
-Default.  
-Throughput scales with file system size.  
-Suitable for most workloads.
+### 1. Bursting Throughput
+o Default  
+o Throughput scales with file system size  
+o Suitable for most workloads  
 
-### Provisioned Throughput
-Specify throughput regardless of storage size.  
-For workloads demanding consistent high throughput.
+### 2. Provisioned Throughput
+o Specify throughput independent of storage size  
+o Useful for workloads needing higher, consistent throughput  
 
 ---
 
 ## Availability and Durability
-Data stored redundantly across multiple AZs.  
-Designed for **11 nines** (99.999999999%) durability.  
-Regional service — accessible from all AZs in the region.
+• Data is stored redundantly across multiple AZs in a region  
+• Designed for 99.999999999% (11 9s) durability  
+• Regional service: accessible from all AZs in a region  
 
 ---
 
 ## Security
-KMS encryption at rest.  
-TLS for in-transit encryption.  
-IAM policies + POSIX permissions.  
-Supports VPC security groups and NACLs.  
-
-### EFS Access Points
-Managed entry points for applications.  
-Enforce user/group IDs and root access control.
+• Supports AWS KMS for encryption at rest  
+• TLS encryption for data in transit  
+• IAM policies and POSIX permissions for access control  
+• Supports VPC security groups and network ACLs  
+• **EFS Access Points:**  
+  o Managed application access  
+  o Enforce user and group identities, root access control  
 
 ---
 
 ## Mounting Options
-Mount over NFS on EC2 instances.  
-Mount targets in each AZ for HA.  
-Supported on:  
-• Linux EC2  
-• On-prem via Direct Connect/VPN  
-• ECS & Lambda (via Access Points)
+• Mount directly on EC2 instances using NFS protocol  
+• Mount targets in each AZ for high availability  
+• Supported on:  
+  o Linux EC2 instances  
+  o On-premises servers via AWS Direct Connect or VPN  
+  o AWS services like ECS and Lambda (via EFS Access Points)  
 
 ---
 
 ## Backup and Restore
-AWS Backup supports automated backups.  
-Define backup plans and retention rules.  
-Point-in-time restore capability.
+• AWS Backup supports EFS file systems  
+• Centralized, automated backup service  
+• Define backup plans and retention policies  
+• Point-in-time recovery of file systems  
 
 ---
 
 ## Use Cases
-Content management.  
-Web hosting and shared file storage.  
-Home directories.  
-Big data analytics.  
-Media processing workflows.  
-Lift-and-shift applications needing shared storage.
+• Content management  
+• Web serving and hosting  
+• Home directories  
+• Big data and analytics  
+• Media processing workflows  
+• Application lift and shift  
 
 ---
 
 ## Pricing
-Charges based on:  
-Storage used (Standard or IA).  
-IA access requests.  
-Provisioned throughput (if configured).  
-Data transfer inside VPC is free; cross-region charges apply.
+Charged based on:  
+o Storage used (Standard or IA)  
+o Requests to IA storage class  
+o Provisioned throughput (if used)  
+o Data transfer within VPC is free; cross-region transfer incurs charges  
 
 ---
 
-## Integration with AWS Services
-EC2 — primary compute integration.  
-ECS — shared persistent storage for containers.  
-Lambda — native EFS integration via Access Points.  
-AWS Backup — centralized automated backups.
+## Integration with Other AWS Services
+• EC2 – primary mounting target  
+• ECS – persistent shared storage for containers  
+• Lambda – native EFS integration with Access Points  
+• AWS Backup – centralized backup and restore  
 
 ---
 
 ## Best Practices
-Enable Lifecycle Management to reduce costs.  
-Use General Purpose for low-latency apps.  
-Choose Max I/O for throughput-heavy, parallel workloads.  
-Encrypt at rest and in transit.  
-Use Access Points for secure and simplified access.  
-Monitor with CloudWatch (IOPS, throughput, storage).  
-Configure mount targets across all AZs for regional resilience.
+• Use Lifecycle Management to reduce costs  
+• Choose General Purpose performance mode for low-latency workloads  
+• Use Max I/O for parallel, throughput-heavy workloads  
+• Encrypt data at rest and in transit  
+• Use Access Points to simplify and secure access  
+• Monitor throughput, IOPS, and storage via CloudWatch  
+• Deploy mount targets in each AZ for regional redundancy  
 
 ---
 
 ## Exam Tips
-POSIX-compliant managed NFS.  
-Supports concurrent access by thousands of instances.  
-Elastic scaling with no provisioning.  
-Storage classes: Standard + IA.  
-Performance modes: General Purpose + Max I/O.  
-Encryption: KMS at rest, TLS in transit.  
-Access Points for fine-grained access control.  
-Can be mounted on-prem via DX or VPN.  
-Integrated with AWS Backup.
+• EFS is POSIX-compliant, fully managed NFS  
+• Supports concurrent access from thousands of instances  
+• Automatically scales with usage  
+• Two storage classes: Standard & IA  
+• Two performance modes: General Purpose & Max I/O  
+• Encryption at rest (KMS) and in transit (TLS)  
+• Access Points = fine-grained access control  
+• Supports hybrid access via Direct Connect or VPN  
+• Integrated with AWS Backup  
 
 ---
 
 ## Quick Summary
-Amazon EFS is a regional, fully managed, elastic NFS file system that scales automatically and supports massive concurrent access. With multiple storage/performance classes, robust security, and seamless AWS integration, it is ideal for shared, scalable file-based workloads across EC2, containers, serverless, and hybrid environments.
+Amazon EFS is a regional, elastic, fully managed NFS system supporting massive concurrency, multiple performance/storage classes, POSIX permissions, encryption, and seamless integration with AWS compute and container services.  
+Perfect for scalable, shared, highly available file-based workloads.
 
