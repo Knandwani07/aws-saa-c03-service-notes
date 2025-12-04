@@ -23,16 +23,16 @@ This consistent structure provides an efficient reference point for both study a
 | Service | What It Does |
 |--------|--------------|
 | **Amazon Athena** | Serverless SQL query service for analyzing data directly in Amazon S3. Pay per query; ideal for ad-hoc analytics. |
-| **AWS Data Exchange** | Enables access to third-party datasets and integration into AWS workflows for analytics and data science. |
-| **AWS Data Pipeline** | Managed ETL and workflow orchestration for moving and transforming data between AWS services and on-premises systems. |
 | **Amazon EMR** | Managed Hadoop/Spark cluster platform for large-scale distributed data processing. Flexible, scalable, and cost-effective. |
-| **AWS Glue** | Serverless ETL service with data cataloging, crawlers, and Spark-based transformations for preparing data for analytics. |
 | **Amazon Kinesis** | Suite of real-time streaming services used to ingest, process, and analyze massive streams of data. |
-| **AWS Lake Formation** | Centralized service to build, secure, and manage data lakes on Amazon S3 with fine-grained governance. |
 | **Amazon MSK (Managed Kafka)** | Fully managed Apache Kafka service for stream processing without cluster administration. |
 | **Amazon OpenSearch Service** | Managed, scalable search and analytics engine for log analytics, dashboards, and full-text search workloads. |
 | **Amazon QuickSight** | Serverless business intelligence service with fast dashboarding using the SPICE in-memory engine. |
 | **Amazon Redshift** | Fully managed data warehouse with MPP architecture and columnar storage for high-performance analytical queries. |
+| **AWS Data Exchange** | Enables access to third-party datasets and integration into AWS workflows for analytics and data science. |
+| **AWS Data Pipeline** | Managed ETL and workflow orchestration for moving and transforming data between AWS services and on-premises systems. |
+| **AWS Glue** | Serverless ETL service with data cataloging, crawlers, and Spark-based transformations for preparing data for analytics. |
+| **AWS Lake Formation** | Centralized service to build, secure, and manage data lakes on Amazon S3 with fine-grained governance. |
 
 # 📂 File Index
 
